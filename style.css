@@ -1,30 +1,73 @@
 @import url('https://fonts.googleapis.com/css2?family=Crete+Round:ital@0;1&display=swap'); /*font at header*/
 @import url('https://fonts.googleapis.com/css2?family=Arvo:ital,wght@0,400;0,700;1,400;1,700&family=Crete+Round:ital@0;1&display=swap'); /*font at body */
 
-body {
-    margin: 0;
-    min-height: 100%;
-}
 
 body {
+    margin: 0;
     min-height: 100vh;
+    color: rgb(244, 250, 255);
         
     background: linear-gradient(
             rgba(0, 30, 20, 0.781),
             rgba(0, 0, 0, 0.424)
-        ), url("assets/bg_main.jpg");
+        ), url("assets/bg_main.png");
+    background-color: rgb(54, 54, 82) ;
     background-position: center;
-    background-size: cover;
+    background-size:cover;
     background-repeat: no-repeat;
 }
-header{
-    background: rgba(0, 0, 0, 0.49);
-    min-height: 7vh;
-    padding: 0 2rem;
-    border-bottom: 3px solid rgb(208, 222, 230);
-    font-family: "Crete Round", serif;
-}
 /* decoration for hearTabs */
+
+
+header {
+    background: rgba(0, 0, 0, 0.49);
+    padding: 0.75rem 2rem;
+    border-bottom: 3px solid rgb(226, 212, 248);
+    font-family: "Crete Round", serif;
+    font-size: 2vh;
+   
+}
+header #mobilePageTitle {
+    display: none;
+}
+
+header #menuToggle {
+    box-sizing: border-box;
+    width: 44px;
+    height: 44px;
+    display: none;
+    background: transparent;
+    border: none;
+    padding: 8px;
+    cursor: pointer;
+    line-height: 0;
+}
+
+#headerTabs {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.75rem 1.5rem;
+    padding: 0.75rem clamp(1rem, 3vw, 2rem);
+}
+#headerTabs a{
+    color: hsl(240, 100%, 94%);
+    text-decoration: none;
+}
+
+#headerTabs a:hover{
+    color: rgb(172, 219, 239);
+}
+
+.leftTabs {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem 2rem;
+}
+
+
 
 #CV {
     border: 2px solid rgb(183, 192, 209);
@@ -38,25 +81,6 @@ header{
     background: rgba(226, 212, 248, 0.15);
     color: white;
 }
-#headerTabs {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    min-height: 7vh;
-}
-.leftTabs {
-    display: flex;
-    align-items: center;
-    gap: 2rem;
-}
-#headerTabs a{
-    color: rgb(234, 253, 251);
-    text-decoration: none;
-}
-#headerTabs a:hover{
-    color: rgb(172, 219, 239);
-}
-
 /* body */
 
 main{
@@ -113,4 +137,48 @@ main .info {
 }
 
 
+@media (max-width: 600px) {
+    main .info,
+    .links {
+        width: 90%;
+    }
+}
+@media (max-width: 600px) {
+    header #menuToggle {
+        display: block;
+        margin-left: auto;
+    }
 
+    #headerTabs {
+        display: none;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 0.75rem 0;
+    }
+
+    #headerTabs.open {
+        display: flex;
+    }
+
+    .leftTabs {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+}
+@media (max-width: 600px) {
+    header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    #mobilePageTitle {
+        display: block;
+        margin-right: auto;
+        margin-left: 1rem;
+        color: hsl(240, 100%, 94%);
+        font-family: "Crete Round", serif;
+        font-size: 1.25rem;
+    }
+}
