@@ -24,11 +24,181 @@
         </nav>
     </header>
     <main>
-        <div id="gifContainer">
+        <!-- <div id="gifContainer">
             <img src="giphy.gif" alt="">
             <h4>Not Uploaded Yet</h4>
+        </div> -->
+        <div id="projectList" aria-live="polite">
+            <p class="repo-status">Loading projects…</p>
         </div>
     </main>
+    <script src="../../script.js"></script>
+    <script>
+        (() => {
+            "use strict";
+ 
+            // ---- Settings ----
+            const USERNAME = "thyfrei";
+            // Leave empty to show every non-fork repo.
+            // Set to e.g. "portfolio" to show only repos that have that topic.
+            const TOPIC = "";
+            // Repo names to always hide (your profile README repo, this website, etc.).
+            const EXCLUDE = ["thyfrei", "Message-Spamming-Script"];
+            // ------------------
+ 
+            const list = document.querySelector("#projectList");
+            const CACHE_KEY = "gh-repos-" + USERNAME;
+            const CACHE_MS = 10 * 60 * 1000; // reuse results for 10 minutes
+ 
+            function readCache() {
+                try {
+                    const raw = sessionStorage.getItem(CACHE_KEY);
+                    if (!raw) return null;
+                    const { time, data } = JSON.parse(raw);
+                    return Date.now() - time < CACHE_MS ? data : null;
+                } catch {
+                    return null;
+                }
+            }
+ 
+            function writeCache(data) {
+                try {
+                    sessionStorage.setItem(
+                        CACHE_KEY,
+                        JSON.stringify({ time: Date.now(), data }),
+                    );
+                } catch {
+                    // Storage can be blocked; the page still works without it.
+                }
+            }
+ 
+            async function getRepos() {
+                const cached = readCache();
+                if (cached) return cached;
+ 
+                const res = await fetch(
+                    `https://api.github.com/users/${USERNAME}/repos?sort=updated&per_page=100`,
+                    { headers: { Accept: "application/vnd.github+json" } },
+                );
+ 
+                if (!res.ok) {
+                    throw new Error("GitHub API responded with " + res.status);
+                }
+ 
+                const raw = await res.json();
+ 
+                // Keep only the fields the page needs.
+                const data = raw.map((r) => ({
+                    name: r.name,
+                    url: r.html_url,
+                    description: r.description,
+                    language: r.language,
+                    stars: r.stargazers_count,
+                    updated: r.pushed_at || r.updated_at,
+                    topics: r.topics || [],
+                    homepage: r.homepage,
+                    fork: r.fork,
+                    archived: r.archived,
+                }));
+ 
+                writeCache(data);
+                return data;
+            }
+ 
+            function el(tag, className, text) {
+                const node = document.createElement(tag);
+                if (className) node.className = className;
+                if (text !== undefined) node.textContent = text;
+                return node;
+            }
+ 
+            function externalLink(href, text) {
+                const a = el("a", null, text);
+                a.href = href;
+                a.target = "_blank";
+                a.rel = "noopener noreferrer";
+                return a;
+            }
+ 
+            function buildCard(repo) {
+                const card = el("article", "repo-card");
+ 
+                const title = el("h3", "repo-title");
+                title.appendChild(externalLink(repo.url, repo.name));
+                card.appendChild(title);
+ 
+                card.appendChild(
+                    el("p", "repo-desc", repo.description || "No description yet."),
+                );
+ 
+                const meta = el("div", "repo-meta");
+                if (repo.language) meta.appendChild(el("span", null, repo.language));
+                if (repo.stars > 0) meta.appendChild(el("span", null, "★ " + repo.stars));
+                meta.appendChild(
+                    el(
+                        "span",
+                        null,
+                        "Updated " +
+                            new Date(repo.updated).toLocaleDateString(undefined, {
+                                year: "numeric",
+                                month: "short",
+                                day: "numeric",
+                            }),
+                    ),
+                );
+                card.appendChild(meta);
+ 
+                const visibleTopics = repo.topics.filter((t) => t !== TOPIC);
+                if (visibleTopics.length) {
+                    const topics = el("div", "repo-topics");
+                    visibleTopics.forEach((t) =>
+                        topics.appendChild(el("span", "repo-topic", t)),
+                    );
+                    card.appendChild(topics);
+                }
+ 
+                if (repo.homepage) {
+                    const live = el("div", "repo-live");
+                    live.appendChild(externalLink(repo.homepage, "Live site →"));
+                    card.appendChild(live);
+                }
+ 
+                return card;
+            }
+ 
+            function showMessage(text, withProfileLink) {
+                list.replaceChildren();
+                const p = el("p", "repo-status", text + " ");
+                if (withProfileLink) {
+                    p.appendChild(
+                        externalLink("https://github.com/" + USERNAME, "View my GitHub profile"),
+                    );
+                }
+                list.appendChild(p);
+            }
+ 
+            getRepos()
+                .then((repos) => {
+                    const shown = repos.filter(
+                        (r) =>
+                            !r.fork &&
+                            !r.archived &&
+                            !EXCLUDE.includes(r.name) &&
+                            (!TOPIC || r.topics.includes(TOPIC)),
+                    );
+ 
+                    if (shown.length === 0) {
+                        showMessage("No projects to show yet.", true);
+                        return;
+                    }
+ 
+                    list.replaceChildren(...shown.map(buildCard));
+                })
+                .catch(() => {
+                    showMessage("Couldn't load projects from GitHub right now.", true);
+                });
+        })();
+    </script>
     <script src="../../script.js"></script>
 </body>
 </html>

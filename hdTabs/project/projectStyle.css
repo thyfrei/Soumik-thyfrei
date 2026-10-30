@@ -84,7 +84,7 @@ main {
     font-size: 18px;
 }
 
-main #gifContainer {
+/* main #gifContainer {
     width: 320px;
     padding: 20px;
     box-sizing: border-box;
@@ -104,13 +104,138 @@ main #gifContainer {
     width: 100%;
     height: auto;
     border-radius: 8px;
-}
+} */
 
 #gifContainer h4 {
     margin: 0;
     text-align: center;
 }
 
+
+/* main is a centered flex box, so align the grid to the top instead of the middle */
+#projectList {
+    align-self: flex-start;
+    width: 60%;
+    margin: 5vh 0 2rem;
+    box-sizing: border-box;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1.25rem;
+}
+
+.repo-status {
+    grid-column: 1 / -1;
+    margin: 0;
+    font-size: 20px;
+}
+
+.repo-status a {
+    color: hsl(240, 100%, 94%);
+    text-decoration: none;
+}
+
+.repo-status a:hover {
+    color: rgb(158, 167, 160);
+    text-decoration: underline;
+}
+
+/* card (same look as your #gifContainer box) */
+.repo-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    padding: 1.5rem;
+    box-sizing: border-box;
+    text-align: left;
+    border: 2px solid rgb(171, 170, 170);
+    border-radius: 12px;
+    background: rgba(0, 0, 0, 0.35);
+    transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.repo-card:hover {
+    transform: translateY(-3px);
+    border-color: rgb(226, 212, 248);
+}
+
+.repo-title {
+    margin: 0;
+    font-size: 22px;
+    font-weight: normal;
+}
+
+.repo-title a {
+    color: hsl(240, 100%, 94%);
+    text-decoration: none;
+}
+
+.repo-title a:hover {
+    color: rgb(158, 167, 160);
+    text-decoration: underline;
+}
+
+.repo-desc {
+    flex-grow: 1;
+    margin: 0;
+    font-size: 17px;
+    line-height: 1.4;
+}
+
+.repo-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem 1rem;
+    font-size: 14px;
+    color: rgb(183, 192, 209);
+}
+
+/* topic tags (same border style as the CV button) */
+.repo-topics {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.repo-topic {
+    padding: 2px 10px;
+    font-size: 14px;
+    border: 2px solid rgb(183, 192, 209);
+    border-radius: 5px;
+}
+
+/* live site link (same style as the CV button) */
+.repo-live a {
+    display: inline-block;
+    padding: 4px 12px;
+    font-size: 15px;
+    color: hsl(240, 100%, 94%);
+    text-decoration: none;
+    border: 2px solid rgb(183, 192, 209);
+    border-radius: 5px;
+    transition: all 0.2s ease;
+}
+
+.repo-live a:hover {
+    background: rgba(226, 212, 248, 0.15);
+    color: white;
+}
+
+@media (max-width: 600px) {
+    #projectList {
+        width: 90%;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .repo-card,
+    .repo-live a {
+        transition: none;
+    }
+
+    .repo-card:hover {
+        transform: none;
+    }
+}
 @media (max-width: 600px) {
     main .info,
     .links {
