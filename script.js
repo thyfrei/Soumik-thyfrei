@@ -5,22 +5,23 @@
 (() => {
   "use strict";
 
-  // Detect which page is currently open.
-  const path = window.location.pathname;
+  // Detect which page is currently open (works with or without ".html" in the URL).
+  const path = window.location.pathname.toLowerCase();
 
-  const isNestedPage = path.includes("/hdTabs/");
+  const isNestedPage = path.includes("/hdtabs/");
   const root = isNestedPage ? "../../" : "";
 
-  const currentPage = path.endsWith("/writeups.html")
+  const currentPage = path.includes("/hdtabs/writeups")
     ? "writeups"
-    : path.endsWith("/project.html")
+    : path.includes("/hdtabs/project")
       ? "project"
-      : path.endsWith("/cv.html")
+      : path.includes("/hdtabs/cv")
         ? "cv"
         : "home";
 
   // Add interaction styles without modifying your CSS files.
   const style = document.createElement("style");
+
   // Page title in mobile view
   const header = document.querySelector("header");
   const menuToggle = document.querySelector("#menuToggle");
@@ -32,17 +33,21 @@
     cv: "Curriculum Vitae",
   };
 
-  if (header && !document.querySelector("#mobilePageTitle")) {
-    const pageTitle = document.createElement("div");
+  if (header) {
+    let pageTitle = document.querySelector("#mobilePageTitle");
 
-    pageTitle.id = "mobilePageTitle";
-    pageTitle.textContent = pageTitles[currentPage] || "Home";
+    if (!pageTitle) {
+      pageTitle = document.createElement("div");
+      pageTitle.id = "mobilePageTitle";
 
-    if (menuToggle) {
-      header.insertBefore(pageTitle, menuToggle);
-    } else {
-      header.prepend(pageTitle);
+      if (menuToggle) {
+        header.insertBefore(pageTitle, menuToggle);
+      } else {
+        header.prepend(pageTitle);
+      }
     }
+
+    pageTitle.textContent = pageTitles[currentPage] || "Home";
   }
 
   // Mobile navigation toggle
@@ -183,15 +188,17 @@
       link.href = root + "hdTabs/cv/cv.html";
     }
 
-    const href = new URL(link.href).pathname;
+    // Compare by page key instead of file name, so it works without ".html".
+    const linkPage =
+      label === "writeups"
+        ? "writeups"
+        : label === "projects"
+          ? "project"
+          : label === "curriculum vitae"
+            ? "cv"
+            : "home";
 
-    const isCurrent =
-      (currentPage === "home" && href.endsWith("/index.html")) ||
-      (currentPage === "writeups" && href.endsWith("/writeups.html")) ||
-      (currentPage === "project" && href.endsWith("/project.html")) ||
-      (currentPage === "cv" && href.endsWith("/cv.html"));
-
-    if (isCurrent) {
+    if (linkPage === currentPage) {
       link.setAttribute("aria-current", "page");
     }
   });
