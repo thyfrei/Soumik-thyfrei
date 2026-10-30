@@ -40,12 +40,14 @@ Soumik/
 │   └── gihub.png
 └── hdTabs/
     ├── writeups/
-    │   └── writeups.html
+    │   ├── writeups.html
+    │   ├── writeUpStyle.css
     ├── project/
     │   ├── project.html
     │   └── projectStyle.css
     └── cv/
-        └── cv.html
+    │   ├── cv.html
+    │   └── cvStyle.css
 ```
 
 ## Running it locally
