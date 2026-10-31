@@ -1,20 +1,28 @@
-@import url('https://fonts.googleapis.com/css2?family=Crete+Round:ital@0;1&display=swap'); /*font at header*/
+
+@import url('https://fonts.googleapis.com/css2?family=Crete+Round:ital@0;1&display=swap');
 
 
+/* =================================
+   1. GLOBAL STYLES
+================================= */
+
+* {
+    box-sizing: border-box;
+}
 
 body {
     margin: 0;
-    min-height: 100%;
-    min-height: 100vh;   
-    background:rgb(59, 57, 56);
+    min-height: 100vh;
+    background: rgb(59, 57, 56);
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
 }
 
 
-/* decoration for hearTabs */
-
+/* =================================
+   2. HEADER AND NAVIGATION
+================================= */
 
 header {
     background: rgba(0, 0, 0, 0.49);
@@ -22,7 +30,6 @@ header {
     border-bottom: 3px solid rgb(226, 212, 248);
     font-family: "Crete Round", serif;
     font-size: 2vh;
-   
 }
 
 header #menuToggle {
@@ -45,12 +52,13 @@ header #menuToggle {
     gap: 0.75rem 1.5rem;
     padding: 0.75rem clamp(1rem, 3vw, 2rem);
 }
-#headerTabs a{
+
+#headerTabs a {
     color: hsl(240, 100%, 94%);
     text-decoration: none;
 }
 
-#headerTabs a:hover{
+#headerTabs a:hover {
     color: rgb(158, 167, 160);
 }
 
@@ -60,8 +68,6 @@ header #menuToggle {
     flex-wrap: wrap;
     gap: 1rem 2rem;
 }
-
-
 
 #CV {
     border: 2px solid rgb(183, 192, 209);
@@ -75,60 +81,262 @@ header #menuToggle {
     background: rgba(226, 212, 248, 0.15);
     color: white;
 }
-/* main */
+
+
+/* =================================
+   3. MAIN LAYOUT
+================================= */
 
 main {
+    width: 100%;
     min-height: 93vh;
+
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: flex-start;
     align-items: center;
+
+    padding: 2rem 1rem 3rem;
 
     color: rgb(234, 253, 251);
     font-family: "Crete Round", serif;
     font-size: 18px;
 }
 
-main #gifContainer {
-    width: 320px;
-    padding: 20px;
-    box-sizing: border-box;
 
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 12px;
+/* =================================
+   4. CV CARD
+================================= */
 
-    border: 2px solid rgb(171, 170, 170);
-    border-radius: 12px;
-    background: rgba(0, 0, 0, 0.35);
+.cv-card {
+    width: min(900px, 100%);
+    padding: clamp(1.4rem, 4vw, 3.2rem);
+
+    border: 1px solid rgba(213, 225, 241, 0.55);
+    border-radius: 20px;
+
+    background: rgba(8, 13, 22, 0.88);
+    box-shadow: 0 18px 55px rgba(0, 0, 0, 0.3);
+
+    color: #edf3fa;
+    font-family: "Inter", Arial, sans-serif;
+    font-size: 0.95rem;
+    line-height: 1.65;
 }
 
-#gifContainer img {
-    display: block;
-    width: 100%;
-    height: auto;
-    border-radius: 8px;
-}
 
-#gifContainer h4 {
-    margin: 0;
+/* =================================
+   5. CV HEADER
+================================= */
+
+.cv-header {
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid rgba(213, 225, 241, 0.35);
     text-align: center;
 }
 
-@media (max-width: 600px) {
-    main .info,
-    .links {
-        width: 90%;
-    }
+.cv-header h1 {
+    margin: 0;
+    color: #fff;
+    font-family: "Crete Round", serif;
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 400;
 }
+
+.cv-header p {
+    margin: 0.2rem 0 0.65rem;
+    color: #c5d2e2;
+}
+
+.contact-links,
+.profile-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.45rem 0.9rem;
+}
+
+.profile-links {
+    margin-top: 0.55rem;
+}
+
+
+/* =================================
+   6. CV LINKS
+================================= */
+
+.cv-card a {
+    color: #a9d8ff;
+    text-decoration: none;
+    text-underline-offset: 3px;
+}
+
+.cv-card a:hover {
+    text-decoration: underline;
+}
+
+
+/* =================================
+   7. CV SECTIONS
+================================= */
+
+.cv-section {
+    margin-top: 1.65rem;
+}
+
+.cv-section h2 {
+    margin: 0 0 0.8rem;
+    padding-bottom: 0.35rem;
+
+    border-bottom: 1px solid rgba(213, 225, 241, 0.3);
+
+    color: #d9c9ff;
+    font-family: "Crete Round", serif;
+    font-size: 1.45rem;
+    font-weight: 400;
+}
+
+
+/* =================================
+   8. CV ENTRIES
+================================= */
+
+.cv-entry + .cv-entry {
+    margin-top: 1rem;
+}
+
+.entry-heading {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 0.2rem 1rem;
+}
+
+.entry-heading h3 {
+    margin: 0;
+    color: #fff;
+    font-size: 1rem;
+}
+
+.entry-heading span {
+    color: #c5d2e2;
+    font-size: 0.9rem;
+}
+
+.cv-entry p {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 0.2rem 1rem;
+    margin: 0.2rem 0 0;
+}
+
+.cv-card ul {
+    margin: 0.4rem 0 0;
+    padding-left: 1.25rem;
+}
+
+.cv-card li {
+    padding-left: 0.15rem;
+    margin: 0.22rem 0;
+}
+
+.skills-list {
+    list-style: none;
+    padding-left: 0;
+}
+
+
+/* =================================
+   9. DOWNLOAD AND PRINT BUTTONS
+================================= */
+
+.cv-actions {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+
+    flex-wrap: wrap;
+    gap: 0.8rem;
+
+    margin: 1.2rem auto 0;
+}
+
+.cv-actions .cv-button {
+    display: inline-flex;
+    width: 145px;
+    min-width: 0;
+
+    padding: 0.45rem 0.8rem;
+
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+
+    border: 1px solid #c7b5f4;
+    border-radius: 999px;
+
+    background: #d9c9ff;
+    color: #171322;
+
+    font: 600 0.8rem "Inter", Arial, sans-serif;
+    text-decoration: none;
+
+    cursor: pointer;
+
+    transition: transform 0.18s ease, background 0.18s ease;
+}
+
+.cv-actions .cv-button:hover {
+    transform: translateY(-2px);
+    background: #e8ddff;
+}
+
+
+
+/* =================================
+   10. MOBILE RESPONSIVENESS
+================================= */
+
+#mobilePageTitle {
+    display: none;
+}
+
 @media (max-width: 600px) {
+
+    /* Header */
+
+    header {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        position: relative;
+        padding: 0.5rem 1rem;
+    }
+
     header #menuToggle {
         display: block;
         margin-left: auto;
+        flex-shrink: 0;
     }
+
+    #mobilePageTitle {
+        display: block;
+        margin-right: auto;
+        color: hsl(240, 100%, 94%);
+        font-family: "Crete Round", serif;
+        font-size: 1.25rem;
+    }
+
+    /* Navigation */
 
     #headerTabs {
         display: none;
+        order: 3;
+        width: 100%;
         flex-direction: column;
         align-items: flex-start;
         padding: 0.75rem 0;
@@ -143,20 +351,119 @@ main #gifContainer {
         align-items: flex-start;
         gap: 1rem;
     }
-}
-@media (max-width: 600px) {
-    header {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
+
+    /* Main */
+
+    main {
+        width: 100%;
+        min-height: 93vh;
+        padding: 1.4rem 0.6rem 2rem;
     }
 
-    #mobilePageTitle {
+    /* CV */
+
+    .cv-card {
+        width: 100%;
+        padding: 1.2rem;
+        border-radius: 16px;
+        font-size: 0.92rem;
+    }
+
+    .entry-heading {
+        flex-direction: column;
+        gap: 0;
+    }
+
+    .cv-entry p {
+        flex-direction: column;
+        gap: 0;
+    }
+
+    /* Buttons remain side by side */
+
+    .cv-actions {
+        flex-direction: row;
+        flex-wrap: nowrap;
+        gap: 0.6rem;
+        margin-top: 1rem;
+    }
+
+    .cv-actions .cv-button {
+        width: 120px;
+        padding: 0.45rem 0.5rem;
+        font-size: 0.76rem;
+    }
+}
+
+
+/* =================================
+   11. PRINT STYLES
+================================= */
+
+@media print {
+
+    @page {
+        size: A4;
+        margin: 15mm;
+    }
+
+    body {
+        background: white !important;
+        color: black !important;
+    }
+
+    header,
+    .cv-actions {
+        display: none !important;
+    }
+
+    main {
         display: block;
-        margin-right: auto;
-        margin-left: 1rem;
-        color: hsl(240, 100%, 94%);
-        font-family: "Crete Round", serif;
-        font-size: 1.25rem;
+        width: 100%;
+        min-height: 0;
+        margin: 0;
+        padding: 0;
+    }
+
+    .cv-card {
+        width: 100%;
+        padding: 0;
+
+        border: none;
+        border-radius: 0;
+        box-shadow: none;
+
+        background: white !important;
+        color: black !important;
+
+        font-size: 10pt;
+        line-height: 1.45;
+    }
+
+    .cv-header h1,
+    .entry-heading h3 {
+        color: black !important;
+    }
+
+    .cv-header p,
+    .entry-heading span,
+    .cv-entry p,
+    .cv-card ul {
+        color: #222 !important;
+    }
+
+    .cv-section h2 {
+        color: #222 !important;
+        border-bottom: 1px solid #999;
+    }
+
+    .cv-card a {
+        color: black !important;
+        text-decoration: none;
+    }
+
+    .cv-section,
+    .cv-entry {
+        break-inside: avoid;
     }
 }

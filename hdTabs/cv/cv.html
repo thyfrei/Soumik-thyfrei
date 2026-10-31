@@ -26,10 +26,147 @@
         </nav>
     </header>
     <main>
-        <div id="gifContainer">
+        <article class="cv-card">
+
+        <!-- Personal Information -->
+        <section class="cv-header">
+            <h1>Soumik Pal</h1>
+            <p>Kolkata, West Bengal, India</p>
+
+            <div class="contact-links">
+                <a href="mailto:interact.soumik@gmail.com">interact.soumik@gmail.com</a>
+                <a href="tel:+919153134751">+91 9153134751</a>
+            </div>
+
+            <div class="profile-links">
+                <a href="https://github.com/thyfrei">GitHub</a>
+                <a href="https://www.linkedin.com/in/iitm-soumik/">LinkedIn</a>
+                <a href="https://thyfrei.github.io/Soumik/">Portfolio</a>
+            </div>
+        </section>
+
+        <!-- Education -->
+        <section class="cv-section">
+            <h2>Education</h2>
+
+            <div class="cv-entry">
+                <div class="entry-heading">
+                    <h3>Indian Institute of Technology, ¸Madras</h3>
+                    <span>India</span>
+                </div>
+                <p>Bachelor of Science in Data Science and Applications
+                    <time>2026 – 2030</time>
+                </p>
+            </div>
+
+            <div class="cv-entry">
+                <div class="entry-heading">
+                    <h3>Indian Institute of Engineering Science and Technology, Shibpur</h3>
+                    <span>Howrah, India</span>
+                </div>
+                <p>Bachelor of Technology in Aerospace Engineering
+                    <time>2026 – 2030</time>
+                </p>
+            </div>
+
+            <div class="cv-entry">
+                <div class="entry-heading">
+                    <h3>Raghunathganj High School</h3>
+                    <span>Murshidabad, West Bengal</span>
+                </div>
+                <p>Higher Secondary Education (PCMB) – A+ Overall
+                    <time>2025</time>
+                </p>
+            </div>
+        </section>
+
+        <!-- Projects -->
+        <section class="cv-section">
+            <h2>Projects</h2>
+
+            <div class="cv-entry">
+                <div class="entry-heading">
+                    <h3>2D Physics Engine</h3>
+                    <span>Python, Pygame ·
+                        <a href="https://github.com/thyfrei/2D-Physics-Engine">GitHub</a>
+                    </span>
+                </div>
+
+                <ul>
+                    <li>Developing a 2D physics simulation engine implementing gravitational motion through semi-implicit Euler integration.</li>
+                    <li>Implemented collision detection, impulse-based collision response, restitution, friction and positional correction.</li>
+                    <li>Refining collision behaviour and numerical stability; rotational dynamics and spring mechanics remain future additions.</li>
+                </ul>
+            </div>
+
+            <div class="cv-entry">
+                <div class="entry-heading">
+                    <h3>Personal Portfolio Website</h3>
+                    <span>HTML5, CSS3, JavaScript ·
+                        <a href="https://github.com/thyfrei/Soumik">GitHub</a>
+                    </span>
+                </div>
+
+                <ul>
+                    <li>Designed and developed a responsive personal website featuring a portfolio, CV, technical write-ups and blog.</li>
+                    <li>Integrated the GitHub REST API to dynamically retrieve and display public repository information.</li>
+                    <li>Deployed through GitHub Pages.</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Academic Achievements -->
+        <section class="cv-section">
+            <h2>Academic Achievements</h2>
+            <ul>
+                <li>Higher Secondary Education (PCMB) – A+ Overall.</li>
+                <li>JEE Main 2026: 99.01 percentile in Physics.</li>
+            </ul>
+        </section>
+
+        <!-- Leadership -->
+        <section class="cv-section">
+            <h2>Leadership &amp; Activities</h2>
+            <ul>
+                <li><strong>Co-Producer &amp; Management Lead, School Rock Band:</strong> Co-led production and management during the school’s Platinum Jubilee celebrations.</li>
+                <li><strong>School Wall Magazine:</strong> Co-designed and managed the magazine, contributing to its creative direction and vintage-inspired aesthetics.</li>
+                <li><strong>Physics Practical Student Guide:</strong> Assisted Group 1 peers in conducting Class XII laboratory experiments.</li>
+            </ul>
+        </section>
+
+        <!-- Skills -->
+        <section class="cv-section">
+            <h2>Skills &amp; Interests</h2>
+            <ul class="skills-list">
+                <li><strong>Programming:</strong> Python, C++</li>
+                <li><strong>Web Technologies:</strong> HTML5, CSS3, JavaScript</li>
+                <li><strong>Libraries:</strong> Pygame, PyAutoGUI, Math</li>
+                <li><strong>Tools:</strong> Git, GitHub, VS Code</li>
+                <li><strong>Academic Interests:</strong> Computational Physics, Algorithms, AI/ML, Web Development</li>
+                <li><strong>Interests:</strong> Electric Guitar, Music, Badminton</li>
+            </ul>
+        </section>
+
+    </article>
+
+    <!-- CV Actions -->
+    <div class="cv-actions">
+        <a class="cv-button"
+           href="/Soumik_CV.pdf"
+           download="Soumik_Pal_CV.pdf">
+            Download <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="24px" width="24px" fill="#000000"><path d="M12,16L7,11L8.4,9.55l2.6,2.6V4h2v8.15l2.6-2.6L17,11l-5,5ZM6,20q-0.82,0-1.41-0.59T4,18V15H6v3H18V15h2v3q0,0.82-0.59,1.41T18,20H6Z"/></svg>
+        </a>
+
+        <!-- <button class="cv-button secondary"
+                onclick="window.open('/Soumik_CV.pdf', '_blank')">
+            Print CV <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="24px" width="24px" fill="#FFFFFF"><path d="M16,8V5H8V8H6V3H18V8H16ZM4,10q0,0 0.29,0T5,10H19q0.43,0 0.71,0T20,10H18H6H4Zm14,2.5q0.43,0 0.71-0.29Q19,11.93 19,11.5t-0.29-0.71T18,10.5t-0.71,0.29T17,11.5t0.29,0.71T18,12.5ZM16,19V15H8v4h8Zm2,2H6V17H2V11Q2,9.73 2.88,8.86T5,8H19q1.28,0 2.14,0.86Q22,9.73 22,11v6H18v4Zm2-6V11q0-0.43-0.29-0.71T19,10H5q-0.42,0-0.71,0.29T4,11v4H6V13H18v2h2Z"/></svg>
+        </button> -->
+    </div>
+
+        <!-- <div id="gifContainer">
             <img src="giphy-2.gif" alt="">
             <h4> Coming Soon</h4>
-        </div>
+        </div> -->
     </main>
     <script src="../../script.js"></script>
 </body>
